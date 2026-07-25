@@ -1,0 +1,15 @@
+name: Test Runner
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: self-hosted
+
+    steps:
+      - name: Check runner
+        run: echo "Runner is working on ${{ runner.os }}"
+
+      - name: Show PAYARA_HOME
+        run: echo "PAYARA_HOME = ${{ secrets.PAYARA_HOME }}"
