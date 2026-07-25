@@ -1,0 +1,15 @@
+name: Payara Start Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  start-payara:
+    runs-on: self-hosted
+
+    steps:
+      - name: Start Payara
+        shell: cmd
+        run: |
+          echo Starting Payara...
+          "%PAYARA_HOME%\bin\asadmin.bat" version
