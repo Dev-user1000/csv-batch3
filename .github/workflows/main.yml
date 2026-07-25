@@ -9,7 +9,9 @@ jobs:
 
     steps:
       - name: Check runner
-        run: echo "Runner is working on ${{ runner.os }}"
+        shell: pwsh
+        run: Write-Host "Runner is working on $env:RUNNER_OS"
 
       - name: Show PAYARA_HOME
-        run: echo "PAYARA_HOME = ${{ secrets.PAYARA_HOME }}"
+        shell: pwsh
+        run: Write-Host "PAYARA_HOME = $env:PAYARA_HOME"
