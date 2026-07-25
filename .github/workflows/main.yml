@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Check runner
-        run: echo Runner is working on %RUNNER_OS%
+        run: echo Runner is working!
 
       - name: Show PAYARA_HOME
-        run: echo PAYARA_HOME = %PAYARA_HOME%
+        run: echo PAYARA_HOME test OK
