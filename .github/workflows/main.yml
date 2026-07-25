@@ -9,9 +9,7 @@ jobs:
 
     steps:
       - name: Check runner
-        shell: pwsh
-        run: Write-Host "Runner is working on $env:RUNNER_OS"
+        run: echo Runner is working on %RUNNER_OS%
 
       - name: Show PAYARA_HOME
-        shell: pwsh
-        run: Write-Host "PAYARA_HOME = $env:PAYARA_HOME"
+        run: echo PAYARA_HOME = %PAYARA_HOME%
