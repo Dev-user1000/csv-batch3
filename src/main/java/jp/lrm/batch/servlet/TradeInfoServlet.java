@@ -1,6 +1,5 @@
 package jp.lrm.batch.servlet;
 
-import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.servlet.ServletException;
@@ -8,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jp.lrm.batch.entity.TradeInfo;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class TradeInfoServlet extends HttpServlet {
         String securityCode = request.getParameter("securityCode");
         String baseDate = request.getParameter("baseDate");
 
-        StringBuilder jpql = new StringBuilder("SELECT t FROM Trade t WHERE 1=1");
+        StringBuilder jpql = new StringBuilder("SELECT t FROM TradeInfo t WHERE 1=1");
         List<String> conditions = new ArrayList<>();
 
         if (customerCode != null && !customerCode.isEmpty()) {
@@ -49,7 +49,7 @@ public class TradeInfoServlet extends HttpServlet {
 
         jpql.append(" ORDER BY t.tradeNo");
 
-        var query = em.createQuery(jpql.toString(), Object.class);
+        var query = em.createQuery(jpql.toString(), TradeInfo.class);
 
         if (customerCode != null && !customerCode.isEmpty()) {
             query.setParameter("customerCode", customerCode);
@@ -63,9 +63,9 @@ public class TradeInfoServlet extends HttpServlet {
             query.setParameter("baseDate", baseDate);
         }
 
-        List<?> trades = query.getResultList();
+        List<TradeInfo> tradeInfos = query.getResultList();
 
-        request.setAttribute("trades", trades);
+        request.setAttribute("trades", tradeInfos);
         request.setAttribute("customerCode", customerCode);
         request.setAttribute("securityCode", securityCode);
         request.setAttribute("baseDate", baseDate);

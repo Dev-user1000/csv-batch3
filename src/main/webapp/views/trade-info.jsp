@@ -233,7 +233,9 @@
                                     <th>Trade No</th>
                                     <th>Base Date</th>
                                     <th>Customer Code</th>
+                                    <th>Customer Name</th>
                                     <th>Security Code</th>
+                                    <th>Security Name</th>
                                     <th>Buy/Sell</th>
                                     <th>Quantity</th>
                                     <th>Amount</th>
@@ -247,7 +249,9 @@
                                         <td>${trade.tradeNo}</td>
                                         <td>${trade.baseDate}</td>
                                         <td>${trade.customerCode}</td>
+                                        <td>${trade.customerName}</td>
                                         <td>${trade.securityCode}</td>
+                                        <td>${trade.securityName}</td>
                                         <td>${trade.buySell}</td>
                                         <td>${trade.quantity}</td>
                                         <td>${trade.amount}</td>
