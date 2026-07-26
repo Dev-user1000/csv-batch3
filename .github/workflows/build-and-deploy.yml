@@ -1,0 +1,35 @@
+name: Build and Deploy csv-batch3
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout latest source
+        uses: actions/checkout@v4
+
+      - name: Build with Maven
+        shell: cmd
+        run: |
+          echo Building project...
+          mvn -B clean package
+
+      - name: Start Payara
+        shell: cmd
+        env:
+          PAYARA_HOME: ${{ secrets.PAYARA_HOME }}
+        run: |
+          echo Starting Payara...
+          "%PAYARA_HOME%\bin\asadmin.bat" start-domain
+          timeout /t 10
+
+      - name: Deploy csv-batch3.war
+        shell: cmd
+        env:
+          PAYARA_HOME: ${{ secrets.PAYARA_HOME }}
+        run: |
+          echo Deploying csv-batch3...
+          "%PAYARA_HOME%\bin\asadmin.bat" deploy "%GITHUB_WORKSPACE%\target\csv-batch3.war"
