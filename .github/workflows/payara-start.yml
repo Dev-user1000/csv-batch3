@@ -8,6 +8,10 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      - name: Set PAYARA_HOME env
+        shell: cmd
+        run: set PAYARA_HOME=${{ secrets.PAYARA_HOME }}
+
       - name: Start Payara
         shell: cmd
         run: |
