@@ -1,0 +1,17 @@
+name: Test Runner
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: self-hosted
+
+    steps:
+      - name: Check runner
+        shell: cmd
+        run: echo Runner is working!
+
+      - name: Show PAYARA_HOME
+        shell: cmd
+        run: echo PAYARA_HOME test OK

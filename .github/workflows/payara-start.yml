@@ -1,0 +1,17 @@
+name: Payara Start Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  start-payara:
+    runs-on: self-hosted
+
+    steps:
+      - name: Start Payara
+        shell: cmd
+        env:
+          PAYARA_HOME: ${{ secrets.PAYARA_HOME }}
+        run: |
+          echo Starting Payara...
+          "%PAYARA_HOME%\bin\asadmin.bat" version
