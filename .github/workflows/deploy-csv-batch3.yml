@@ -1,4 +1,4 @@
-name: Deploy csv-batch3
+name: Start Payara and Deploy csv-batch3
 
 on:
   workflow_dispatch:
@@ -8,6 +8,16 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      - name: Start Payara
+        shell: cmd
+        env:
+          PAYARA_HOME: ${{ secrets.PAYARA_HOME }}
+        run: |
+          echo Starting Payara...
+          "%PAYARA_HOME%\bin\asadmin.bat" start-domain
+          echo Waiting for Payara to be ready...
+          timeout /t 10
+
       - name: Deploy csv-batch3.war
         shell: cmd
         env:
