@@ -1,0 +1,17 @@
+name: Deploy csv-batch3
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Deploy csv-batch3.war
+        shell: cmd
+        env:
+          PAYARA_HOME: ${{ secrets.PAYARA_HOME }}
+        run: |
+          echo Deploying csv-batch3...
+          "%PAYARA_HOME%\bin\asadmin.bat" deploy C:\AIDev\Projects\csv-batch3\target\csv-batch3.war
