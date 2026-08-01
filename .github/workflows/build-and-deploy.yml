@@ -17,6 +17,14 @@ jobs:
           echo Building project...
           mvn -B clean package
 
+      - name: Stop Payara (if running)
+        shell: cmd
+        env:
+          PAYARA_HOME: ${{ secrets.PAYARA_HOME }}
+        run: |
+          echo Stopping Payara...
+          "%PAYARA_HOME%\bin\asadmin.bat" stop-domain || echo Payara was not running
+
       - name: Start Payara
         shell: cmd
         env:
