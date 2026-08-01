@@ -17,15 +17,15 @@ jobs:
           echo Building project...
           mvn -B clean package
 
-      - name: Stop Payara (ignore errors)
+      - name: Stop Payara (never fail)
         shell: cmd
         env:
           PAYARA_HOME: ${{ secrets.PAYARA_HOME }}
         run: |
           echo Stopping Payara if running...
-          "%PAYARA_HOME%\bin\asadmin.bat" stop-domain
-          echo Stop failed but ignored
-          exit 0
+          call "%PAYARA_HOME%\bin\asadmin.bat" stop-domain
+          echo Stop attempted. Ignoring any errors.
+          exit /b 0
 
       - name: Start Payara
         shell: cmd
