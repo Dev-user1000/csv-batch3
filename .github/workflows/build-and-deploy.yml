@@ -23,7 +23,9 @@ jobs:
           PAYARA_HOME: ${{ secrets.PAYARA_HOME }}
         run: |
           echo Stopping Payara if running...
-          "%PAYARA_HOME%\bin\asadmin.bat" stop-domain || echo Stop failed but ignored
+          "%PAYARA_HOME%\bin\asadmin.bat" stop-domain
+          echo Stop failed but ignored
+          exit 0
 
       - name: Start Payara
         shell: cmd
