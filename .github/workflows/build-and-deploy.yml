@@ -32,4 +32,4 @@ jobs:
           PAYARA_HOME: ${{ secrets.PAYARA_HOME }}
         run: |
           echo Deploying csv-batch3...
-          "%PAYARA_HOME%\bin\asadmin.bat" deploy "%GITHUB_WORKSPACE%\target\csv-batch3.war"
+          "%PAYARA_HOME%\bin\asadmin.bat" deploy --force "%GITHUB_WORKSPACE%\target\csv-batch3.war"
