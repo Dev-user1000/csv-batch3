@@ -17,19 +17,13 @@ jobs:
           echo Building project...
           mvn -B clean package
 
-      - name: Stop Payara (only if running)
+      - name: Stop Payara (ignore errors)
         shell: cmd
         env:
           PAYARA_HOME: ${{ secrets.PAYARA_HOME }}
         run: |
-          echo Checking Payara status...
-          "%PAYARA_HOME%\bin\asadmin.bat" list-domains | findstr "running"
-          if %ERRORLEVEL% EQU 0 (
-            echo Payara is running. Stopping...
-            "%PAYARA_HOME%\bin\asadmin.bat" stop-domain
-          ) else (
-            echo Payara is not running.
-          )
+          echo Stopping Payara if running...
+          "%PAYARA_HOME%\bin\asadmin.bat" stop-domain || echo Stop failed but ignored
 
       - name: Start Payara
         shell: cmd
